@@ -73,8 +73,21 @@ class mystring
             Console.Write(kelime[b]);
         }
     }
+    static public void remove(this string kelime, int a, int b)
+    {
+        ArrayList dizi= new ArrayList();
+        foreach(char c in kelime)
+        {
+            dizi.Add(c);
+        }
+        dizi.RemoveRange(a, b);
+        foreach(char c in dizi)
+        {
+            Console.Write(c);
+        }
+    }
 
-    public static void remove(string kelime,int a, int b)
+    public static void remove1(string kelime,int a, int b)
     {
 
         for (int i = 0; i < a; i++)
@@ -93,7 +106,31 @@ class mystring
         }
     }
 
-    public static ArrayList split(string kelime,char arasına)
+    static public void split(this string metin, char aranan)
+    {
+        ArrayList dizi = new ArrayList();
+        int a = mystring.length(metin);
+        string gecicim = "";
+        for (int i = 0; i < a; i++)
+        {
+            if (metin[i] != aranan)
+            {
+                gecicim += metin[i];
+                if (i == a - 1)
+                {
+                    dizi.Add(metin[i]);
+                }
+                continue;
+            }
+            dizi.Add(gecicim);
+            gecicim = "";
+        }
+        foreach (var c in dizi)
+        {
+            Console.WriteLine(c);
+        }
+    }
+    public static ArrayList split1(string kelime,char arasına)
     {
 
         int len = mystring.length(kelime);
@@ -160,6 +197,62 @@ class mystring
 
         }
     }
+     static public void trimend(this string metin)
+    {
+        int i = 0;
+        int adet = mystring.length(metin);
+      
+
+            for (i = adet - 1; i > 0; i--)
+            {
+                if (metin[i] == ' ')
+                {
+
+                }
+
+                else if (metin[i] != ' ')
+                {
+                    break;
+                }
+            }
+    
+
+        for (int e = 0; e < i + 1; e++)
+        {
+            Console.Write(metin[e]);
+        }
+        
+    }
+    static public void trim(this string metin)
+    {
+
+        int adet = 0;
+        foreach (char c in metin)
+        {
+
+            if (c != ' ')
+            {
+                break;
+            }
+            else
+                adet++;
+        }
+        int adet2 = mystring.length(metin);
+        for (int i = adet2 - 1; i > 0; i--)
+        {
+            if (metin[i] == ' ')
+            {
+                adet2--;
+            }
+
+            else if (metin[i] != ' ')
+            {
+                break;
+            }
+        }
+        Console.WriteLine(adet2-1);
+        mystring.sub(metin, adet, adet2);
+    } 
 
 
     public static void trimstart(string kelime)
